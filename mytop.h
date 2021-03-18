@@ -65,11 +65,6 @@ int print_memory()
 
     fclose(fp);
 
-    printf("main memory: %ldK total, %ldK free, %ldK contig free, "
-           "%ldK cached\n",
-           (pagesize * total)/1024, (pagesize * free)/1024,
-           (pagesize * largest)/1024, (pagesize * cached)/1024);
-
     return 1;
 }
 void parse_dir(){
@@ -96,13 +91,11 @@ void parse_dir(){
 void parse_file(pid_t pid)
 {
     char path[PATH_MAX], name[256], type, state;
-    int version, endpt, effuid; //版本，端点，有效用户ID
-    unsigned long cycles_hi, cycles_lo; //高周期，低周期
+    int version, endpt, effuid;
+    unsigned long cycles_hi, cycles_lo;
     FILE *fp;
     struct proc *p;
-    //int slot; //插槽?
     int i;
-    //printf("parse_file\n");
 
     sprintf(path, "/proc/%d/psinfo", pid);
 
@@ -125,7 +118,6 @@ void parse_file(pid_t pid)
     }
 
     slot++;
-    //slot = SLOT_NR(endpt);
 
     if(slot < 0 || slot >= nr_total) {
         fprintf(stderr, "top: unreasonable endpoint number %d\n", endpt);
@@ -184,7 +176,6 @@ void parse_file(pid_t pid)
         if(fscanf(fp, " %lu", &p->p_memory) != 1) {
             p->p_memory = 0;
         }
-        printf("task's name %s and its memory %lu",p->p_name,p->p_memory);
     }
 
     p->p_flags |= USED;

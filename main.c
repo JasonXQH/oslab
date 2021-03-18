@@ -7,7 +7,7 @@ int main(int argc, char **argv)
     int wordcount = 0;
     char wordmatrix[100][256];
     char **arg = NULL;
-    char *buf = NULL; //用户输入
+    char *buf = NULL;
 
     if((buf = (char *)malloc(256))== NULL){
         perror("malloc failed");
@@ -15,18 +15,22 @@ int main(int argc, char **argv)
     }
 
     while(1){
-        memset(buf, 0, 256);    //将buf所指的空间清零
+        memset(buf, 0, 256);
         message = (char *)malloc(100);
         getcwd(message, 100);
         printf("os_shell:%s # ", message);
         free(message);
         getOrder(buf);
+        if (strcmp(buf,"\n")==0){
+            continue;
+        }
         strcpy(msg[whilecnt],buf);
         whilecnt++;
         if( strcmp(buf, "exit\n") == 0 ){
             printf("Welcome to use my shell again!\n");
             break;
         }
+
         for(i = 0; i < 100; i++){
             wordmatrix[i][0] = '\0';
         }

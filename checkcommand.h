@@ -11,9 +11,7 @@ int checkCommand(char *command){
     char *path[] = {"./", "/bin", "/usr/bin", NULL};
 
     if( strncmp(command, "./", 2) == 0 )
-    {
         command = command + 2;
-    }
 
 
     int i = 0;
