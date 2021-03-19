@@ -81,9 +81,6 @@
 		<Unit filename="/Users/jasonxu/CLionProjects/shell/checkcommand.h">
 			<Option target="shell"/>
 		</Unit>
-		<Unit filename="/Users/jasonxu/CLionProjects/shell/exe_cdfunc.h">
-			<Option target="shell"/>
-		</Unit>
 		<Unit filename="/Users/jasonxu/CLionProjects/shell/execommand.h">
 			<Option target="shell"/>
 		</Unit>
